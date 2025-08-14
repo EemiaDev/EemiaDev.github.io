@@ -1,2 +1,2 @@
-# CIS114
-JavaScript/Ajax Programming
+# CIS114 JavaScript/Ajax Programming
+
