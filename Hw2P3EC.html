@@ -77,7 +77,43 @@
             margin-top: 100px;
         }
         /*section styling*/
-        .body { max-width: 400px; margin: 0px auto; padding-top: 20px;}
+        .body { 
+            max-width: 430px; margin: 0px auto; padding-top: 20px;
+        }
+        /*input styling*/
+        input { 
+            width: 116px; 
+            border: none; 
+            font-size: 18px; 
+            text-align: right;
+        }
+        /*table styling*/
+        table, th, td {
+            border: 1px solid black;
+            border-collapse: collapse;
+        }
+        #val-eur, #val-cad, #val-hkd, #val-jpy, #val-mxn:focus {
+            outline: none;
+            border: none;
+            box-shadow: none;
+            cursor: default;
+        /*usd cell styling*/    
+        }
+        #usd:focus {
+            background-color: #cce1ff;
+            outline: none;
+            border: none;
+            box-shadow: none;
+        }  
+        #usd {
+            background-color: rgb(255, 255, 255); 
+            padding-left:7px; 
+            text-align: right;
+            outline: none;
+            border: none;
+            box-shadow: none;
+        }        
+
     </style>
 </head>
 
@@ -94,7 +130,44 @@
 
     <section class="body">
         <h3>Currency Exchange</h3>
-        <p>Enter any 3 numbers and press the Submit button to see the results.</p>     
+        <p>Enter a U.S. dollar amount to see foreign currency exchange results.</p>    
+        <table>
+            <tr>
+                <th>Currency</th>
+                <th>Rate</th>
+                <th>Value</th>
+            </tr>
+            <tr>
+                <td style="padding-left: 8px;">Euro</td>
+                <td style="padding-left: 8px;">0.92</td>
+                <td style="padding-right: 8px;"><input id="val-eur" readonly></td>
+            </tr>
+            <tr>
+                <td style="padding-left: 8px;">Canadian Dollar</td>
+                <td style="padding-left: 8px;">1.38</td>
+                <td><input id="val-cad" readonly></td>
+            </tr>
+            <tr>
+                <td style="padding-left: 8px;">Hong Kong Dollar</td>
+                <td style="padding-left: 8px;">7.81</td>
+                <td><input id="val-hkd" readonly></td>
+            </tr>
+            <tr>
+                <td style="padding-left: 8px;">Japanese Yen</td>
+                <td style="padding-left: 8px;">156.73</td>
+                <td><input id="val-jpy" readonly></td>
+            </tr>
+            <tr>
+                <td style="padding-left: 8px;">Mexican Peso</td>
+                <td style="padding-left: 8px;">18.41</td>
+                <td><input id="val-mxn" readonly></td>
+            </tr>
+            <tr>
+                <td  style="padding-left: 8px; padding-right: 8px;" colspan="2"><strong>Enter Amount of U.S. Dollars</strong></td>
+                <td style="text-align: right; box-shadow: inset 0 0 0 1px rgb(128, 127, 127); background-color: #cce1ff;"> <input id="usd" type="number" min="0" oninput="exchange()"></td>
+            </tr>            
+        </table>   
+        <p id="error" style="color: red; font-size: 16px;"></p>      
 
         
     </section>
@@ -102,7 +175,28 @@
     <nav class="previous-next">
       <a href="Hw2P2.html" class="previous">Previous: Part 2</a>
     </nav>
-        
+    
+    <script>
+        function exchange() {
+            let usd = parseFloat(document.getElementById("usd").value);
+            document.getElementById("val-eur").value = (usd * 0.92).toFixed(2);
+            document.getElementById("val-cad").value = (usd * 1.38).toFixed(2);
+            document.getElementById("val-hkd").value = (usd * 7.81).toFixed(2);
+            document.getElementById("val-jpy").value = (usd * 156.73).toFixed(2);            
+            document.getElementById("val-mxn").value = (usd * 18.41).toFixed(2);
+            document.getElementById("error").textContent = "";
+
+            if (usd <= 0 || isNaN(usd)) {
+            document.getElementById("error").textContent = "*Please enter a positive U.S. Dollar amount.";
+            document.getElementById("val-eur").value = "";
+            document.getElementById("val-cad").value = "";
+            document.getElementById("val-hkd").value = "";
+            document.getElementById("val-jpy").value = "";
+            document.getElementById("val-mxn").value = "";
+            return;
+            }
+        }
+    </script>
         
 </body>
 </html>
