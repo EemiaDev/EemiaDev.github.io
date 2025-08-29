@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="description" content="JavaScript/Ajax Programming Homework 2: Basic Operations">
+<title>Create a Webpage With a Form</title>
+    <style>
+        header {
+            background-color: #cce1ff;
+            border-radius: 50px;
+        }
+        h1 {
+            color: black;
+            padding: 20px;
+            text-align: center;
+        }
+        h3 {
+            color: rgb(31, 30, 30);
+            text-align: center;
+        }
+        body {
+            max-width: 1200px;
+            margin: 0 auto;
+            font-size: 18px;
+            line-height: 1.5;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+        /* Breadcrumb styling*/
+        ul.breadcrumb {
+            list-style: none;
+        }
+        ul.breadcrumb li {
+            display: inline;
+            font-size: 16px;
+        }
+        ul.breadcrumb li+li:before {
+            padding: 8px;
+            color: black;
+            content: "/\00a0";
+        }
+        /* Homework links styling*/
+        .homework-links {
+            max-width: 500px;
+            margin: 0 auto;       
+            text-align: left;     
+        }
+        .homework-links li {
+            list-style: none;
+            margin: 16px 0;
+        }
+        /*Previou/Next button styling*/
+        a {
+            text-decoration: none;
+            display: inline-block;
+            padding: 8px 16px;
+        }
+        a:hover {
+            background-color: #ddd;
+            color: black;
+        }
+        .previous { 
+            font-style: normal;
+            background-color: #f1f1f1;
+            border-radius: 6px;
+            color: black;
+        }
+        .next {
+            font-style: normal;
+            background-color: #f1f1f1;
+            border-radius: 6px;
+            color: black;
+        }
+        nav.previous-next {
+            display: flex;
+            margin: 50px;
+            justify-content: space-between;
+            margin-top: 100px;
+        }
+        /*section styling*/
+        .body { max-width: 400px; margin: 0px auto; padding-top: 20px;}
+    </style>
+</head>
+
+<body>
+    <header>
+      <h1>Part 2: Create a Webpage With a Form</h1>
+    </header>
+
+    <ul class="breadcrumb">
+      <li><a href="Hw1.html">Home</a></li>
+      <li><a href="Hw2.html">Homework 2 - Basic Operations</a></li>
+      <li>Part 2</li>
+    </ul>
+
+    <section class="body">
+        <h3>Calculator</h3>
+        <p>Enter any 3 numbers and press the Submit button to see the results.</p>     
+        <form id="myform" name="myform">
+        <table>
+            <tr>
+            <td>First Number:</td>
+            <td><input type="text" name="num1" size="30"></td>
+            </tr>
+            <tr>
+            <td>Second Number:</td>
+            <td><input type="text" name="num2" size="30"></td>
+            </tr>
+            <tr>
+            <td>Third Number:</td>
+            <td><input type="text" name="num3" size="30"></td>
+            </tr>
+            <tr>
+            <td>Result:</td>
+            <td><textarea name="result" rows="8" cols="31" readonly></textarea></td>
+            </tr>
+            <tr>
+            <td colspan="2"><input type="button"  id="process" value="SUBMIT">
+            <input type="reset" value="RESET" onclick="document.forms['myform'].elements['num1'].focus();"></td>
+            </tr>
+        </table>
+        </form>
+    </section>
+
+    <nav class="previous-next">
+      <a href="Hw2P1.html" class="previous">Previous: Part 1</a>
+      <a href="Hw2P3EC.html" class="next">Next: Extra Credit</a>
+    </nav>
+        
+    <script>
+    var process = document.getElementById("process");
+        process.onclick = function() {
+            /*form inputs*/
+            var number1, number2, number3, n1, n2, n3; 
+            number1 = document.forms["myform"].elements["num1"].value;
+            number2 = document.forms["myform"].elements["num2"].value;
+            number3 = document.forms["myform"].elements["num3"].value;     
+            n1=parseInt(number1)
+            n2=parseInt(number2)
+            n3=parseInt(number3)
+            /*error message*/
+            if (number1 === "" || number2 === "" || number3 === "" ||
+                isNaN(n1) || isNaN(n2) || isNaN(n3)) {
+                document.forms["myform"].elements["result"].value =
+                "Error: Please enter a valid number in all three boxes.";
+                return; 
+            }
+            /*sum, average, and product*/
+            var sum = n1 + n2 + n3;
+            var average = sum / 3;
+            var product = n1 * n2 * n3;
+            /*smallest and largest*/
+            var smallest = Math.min(n1, n2, n3);
+            var largest = Math.max(n1, n2, n3);
+            /*output*/
+            var output = "You have entered " + n1 + ", " + n2 + " and " + n3 + "\n\n";
+            output += "The sum is " + sum + "\n";
+            output += "The average is " + average + "\n";
+            output += "The product is " + product + "\n\n";
+            output += "The smallest number is " + smallest + "\n";
+            output += "The largest number is " + largest;
+            /*display output*/
+            document.forms["myform"].elements["result"].value = output;
+            }
+    </script>  
+        
+</body>
+</html>
