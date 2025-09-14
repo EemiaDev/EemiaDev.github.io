@@ -25,19 +25,29 @@
         line-height: 1.5;
         font-family: Arial, Helvetica, sans-serif;
       }
-      .center-img {
-        display: block;
-        height: 300px;
-        margin: 16px auto;
-        width:300px;
-      }
-      ul {
-        list-style: none;
-        text-align: center;
-      }
+
       li {
-        padding: 2px;
+        padding: 4px;
       }
+      .imageAndLinks {
+        display: flex ;              
+        max-width: fit-content;
+        margin: auto;
+        margin-top: 80px;
+        align-items: center;        
+        gap: 80px;                  
+      }
+
+      .imageAndLinks img {
+        height: 500px;
+        width: 500px;
+      }
+
+      .imageAndLinks ul {
+        list-style: none;
+        padding: 0;
+      }
+
     </style>
   </head>
 
@@ -45,22 +55,23 @@
     <header>
       <h1>CIS 114 Assignments</h1>
     </header>
-    <figure>
+
+    <section class="imageAndLinks">
+      <figure>
       <img
       src="Images/hw1image.jpg"
-      alt="Person studying JavaScript, code and JS logo illustration"
-      class="center-img"
-      />
+      alt="Person studying JavaScript, code and JS logo illustration"/>
     </figure>
     <ul>
       <li><a href="Hw2.html">Homework 2</a></li>
-      <li>Homework 3</li>
+      <li><a href="Hw3.html">Homework 3</a></li>
       <li>Homework 4</li>
       <li>Homework 5</li>
       <li>Homework 6</li>
       <li>Homework 7</li>
       <li>Homework 8</li>
     </ul>
+    </section>
   </body>
 </html>
 
