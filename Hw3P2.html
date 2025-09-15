@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="description" content="JavaScript/Ajax Programming Homework 3: Functions">
+<title>Create a Webpage That Calculates Weekly Earnings</title>
+    <style>
+        header {
+            background-color: #cce1ff;
+            border-radius: 50px;
+        }
+        h1 {
+            color: black;
+            padding: 20px;
+            text-align: center;
+        }
+        h3 {
+            color: black;
+            text-align: center;
+        }
+        body {
+            max-width: 1200px;
+            margin: 0 auto;
+            font-size: 18px;
+            line-height: 1.5;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+        /* Breadcrumb styling*/
+        ul.breadcrumb {
+            list-style: none;
+        }
+        ul.breadcrumb li {
+            display: inline;
+            font-size: 16px;
+        }
+        ul.breadcrumb li+li:before {
+            padding: 8px;
+            color: black;
+            content: "/\00a0";
+        }
+        /* Homework links styling*/
+        .homework-links {
+            max-width: 500px;
+            margin: 0 auto;       
+            text-align: left;     
+        }
+        .homework-links li {
+            list-style: none;
+            margin: 16px 0;
+        }
+        /*Previou/Next button styling*/
+        nav.previous-next a {
+            text-decoration: none;
+            display: inline-block;
+            padding: 8px 16px;
+        }
+        nav.previous-next a:hover {
+            background-color: #ddd;
+            color: black;
+        }
+        nav.previous-next .previous { 
+            font-style: normal;
+            background-color: #f1f1f1;
+            border-radius: 6px;
+            color: black;
+        }
+        nav.previous-next .next {
+            font-style: normal;
+            background-color: #f1f1f1;
+            border-radius: 6px;
+            color: black;
+        }
+        nav.previous-next {
+            display: flex;
+            margin: 50px;
+            justify-content: space-between;
+            margin-top: 100px;
+        }
+        /*section styling*/
+        .body { max-width: 500px; margin: 0px auto; padding-top: 20px;
+        }        
+        /*form styling*/
+        .form-row {
+            padding: 2px 0;
+        }
+        .form-row label {
+            display: inline-block;
+            width: 60px;
+        }  
+    </style>
+
+    <script>
+        function process() {
+            //declare variables
+            const item1Price = 20.99;
+            const item2Price = 12.75;
+            const item3Price = 9.95;
+            const item4Price = 35.89;
+            //get input values from form
+            const item1Qty = document.getElementById("item1Qty").value;
+            const item2Qty = document.getElementById("item2Qty").value;
+            const item3Qty = document.getElementById("item3Qty").value;
+            const item4Qty = document.getElementById("item4Qty").value;
+            //validate input
+            if (isNaN(item1Qty) || item1Qty=="" || item1Qty < 0 || 
+                isNaN(item2Qty) || item2Qty=="" || item2Qty < 0 || 
+                isNaN(item3Qty) || item3Qty=="" || item3Qty < 0 || 
+                isNaN(item4Qty) || item4Qty=="" || item4Qty < 0) {
+                document.getElementById("error").innerHTML= "<span style='color: red; font-size: 18px;'>Invalid input. Please enter a positive whole number for all items.</span>"; return}
+            //clear error message
+            document.getElementById("error").innerHTML = "";
+            //display qty sold
+            document.getElementById("item1QtyDisplay").value = item1Qty;
+            document.getElementById("item2QtyDisplay").value = item2Qty;
+            document.getElementById("item3QtyDisplay").value = item3Qty;
+            document.getElementById("item4QtyDisplay").value = item4Qty;
+            //create numeric variables for each item total
+            const item1Total = item1Qty * item1Price;
+            const item2Total = item2Qty * item2Price;
+            const item3Total = item3Qty * item3Price;
+            const item4Total = item4Qty * item4Price;
+            //display item total
+            document.getElementById("item1Total").value = "$" + item1Total.toFixed(2);
+            document.getElementById("item2Total").value = "$" + item2Total.toFixed(2);
+            document.getElementById("item3Total").value = "$" + item3Total.toFixed(2);
+            document.getElementById("item4Total").value = "$" + item4Total.toFixed(2);
+            //create numeric variable for total amount sold
+            const totalAmountSold = item1Total + item2Total + item3Total + item4Total; 
+            //display total amount sold
+            document.getElementById("totalAmountSold").value = "$" + totalAmountSold.toFixed(2);
+            //create numeric variable for total amount sold
+            const totalWeeklyEarnings = 250 + (totalAmountSold * 0.09); 
+            //display total earnings 
+            document.getElementById("totalWeeklyEarnings").value = "$" + totalWeeklyEarnings.toFixed(2);
+        }
+        function res() {
+            document.getElementById("error").innerHTML = "";
+        }       
+    </script>
+</head>
+
+<body>
+    <header>
+      <h1>Part 2: Create a Webpage That Calculates Weekly Earnings</h1>
+    </header>
+
+    <ul class="breadcrumb">
+      <li><a href="Hw1.html">Home</a></li>
+      <li><a href="Hw3.html">Homework 3 - Functions</a></li>
+      <li>Part 2</li>
+    </ul>
+
+    <section class="body">
+        <h3>Weekly Earnings</h3>
+        <p>Type in the quantity sold for each item to calculate earnings</p>     
+        <form id="myform" name="myform">
+        <div class="form-row">
+            <label for="item1Qty">Item 1:</label>
+            <input type="number" name="item1Qty" id="item1Qty">
+        </div>
+        <div class="form-row">
+            <label for="item2Qty">Item 2:</label>
+            <input type="number" name="item2Qty" id="item2Qty">
+        </div>
+        <div class="form-row">
+            <label for="item3Qty">Item 3:</label>
+            <input type="number" name="item3Qty" id="item3Qty">
+        </div>
+        <div class="form-row">
+            <label for="item4Qty">Item 4:</label>
+            <input type="number" name="item4Qty" id="item4Qty">
+        </div>
+        <div>
+            <input type="button" value="SUBMIT"  onclick="process()"> <br>
+            <input type="reset" value="CLEAR FORM" onclick="res()"> <br>    
+        </div>
+
+        <div id="error"></div>
+        
+        <table>
+            <tr>
+                <td style="font-weight: bold; text-align: center;"><label for="itemNumber">Item#</label></td>
+                <td style="font-weight: bold; text-align: center;"><label for="price">Price</label></td>
+                <td style="font-weight: bold; text-align: center;"><label for="qty">Qty Sold</label></td>
+                <td style="font-weight: bold; text-align: center;"><label for="total">Total $</label></td>
+            </tr>
+            <tr>
+                <td><label for="itemId">1</label></td>
+                <td><label for="itemPrice">$20.99</label></td>
+                <td><input readonly id="item1QtyDisplay"></td>
+                <td><input readonly id="item1Total"></td>
+            </tr>
+            <tr>
+                <td><label for="itemId">2</label></td>
+                <td><label for="itemPrice">$12.75</label></td>
+                <td><input readonly id="item2QtyDisplay"></td>
+                <td><input readonly id="item2Total"></td>
+            </tr>
+            <tr>
+                <td><label for="itemId">3</label></td>
+                <td><label for="itemPrice">$9.95</label></td>
+                <td><input readonly id="item3QtyDisplay"></td>
+                <td><input readonly id="item3Total"></td>
+            </tr>
+            <tr>
+                <td><label for="itemId">4</label></td>
+                <td><label for="itemPrice">$35.89</label></td>
+                <td><input readonly id="item4QtyDisplay"></td>
+                <td><input readonly id="item4Total"></td>
+            </tr>
+            <tr>
+                <td colspan="3"><label for="totalAmountSold">Total Amount Sold</label></td>
+                <td><input readonly id="totalAmountSold"></td>
+            </tr>
+            <tr>
+                <td colspan="3"><label for="totalWeeklyEarnings">Total Weekly Earnings</label></td>
+                <td><input readonly id="totalWeeklyEarnings"></td>
+            </tr>            
+        </table>
+        </form>
+    </section>
+
+    <nav class="previous-next">
+      <a href="Hw3P1.html" class="previous">Previous: Part 1</a>
+      <a href="Hw3P3EC.html" class="next">Next: Extra Credit</a>
+    </nav>
+</body>
+</html>
