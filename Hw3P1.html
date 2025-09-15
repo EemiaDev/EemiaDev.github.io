@@ -79,10 +79,13 @@
         /*section styling*/
         .body { max-width: 500px; margin: 0px auto; padding-top: 20px;
         }        
-        /*table column styling*/
-        td {
-            width: 300px;
-            height: 35px;
+        /*form styling*/
+        .form-row {
+            padding: 4px 0;
+        }
+        .form-row label {
+            display: inline-block;
+            width: 250px;
         }
     </style>
 
@@ -159,28 +162,26 @@
         <h3>Student Grades</h3>
         <p>Use this tool to calcutate your final average and letter grade</p>     
         <form id="myform" name="myform">
-        <table>
-            <tr>
-            <td><label for="hwAvg">Homework Average:</label> </td>
-            <td><input type="number" name="hwAvg" id="hwAvg"></td>
-            </tr>
-            <tr>
-            <td><label for="midExam">Mid-Term Exam Score:</label> </td>
-            <td><input type="number" name="midExam"  id="midExam"></td>
-            </tr>
-            <tr>
-            <td><label for="finalExam">Final Exam Score:</label> </td>
-            <td><input type="number" name="finalExam"  id="finalExam"></td>
-            </tr>
-            <tr>
-            <td><label for="participation">Participation:</label> </td>
-            <td><input type="number" name="participation"  id="participation"></td>
-            </tr>
-            <tr>
-            <td><input type="button" value="SUBMIT"  onclick="process()">
-            <input type="reset" value="RESET" onclick="res()"></td>
-            </tr>
-        </table>
+        <div class="form-row">
+            <label for="hwAvg">Homework Average:</label>
+            <input type="number" name="hwAvg" id="hwAvg">
+        </div>
+        <div class="form-row">
+            <label for="midExam">Mid-Term Exam Score:</label>
+            <input type="number" name="midExam" id="midExam">
+        </div>
+        <div class="form-row">
+            <label for="finalExam">Final Exam Score:</label>
+            <input type="number" name="finalExam" id="finalExam">
+        </div>
+        <div class="form-row">
+            <label for="participation">Participation:</label>
+            <input type="number" name="participation" id="participation">
+        </div>
+        <div class="form-row">
+            <input type="button" value="SUBMIT" onclick="process()">
+            <input type="reset" value="RESET" onclick="res()">
+        </div>
         <div id="error"></div>
         <div id="results"></div>
         </form>
