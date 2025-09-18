@@ -77,7 +77,7 @@
             margin-top: 100px;
         }
         /*section styling*/
-        .body { max-width: 500px; margin: 0px auto; padding-top: 20px;
+        .body { max-width:fit-content; margin: 0px auto; padding-top: 20px;
         }        
         /*form styling*/
         #myform label {
@@ -85,8 +85,26 @@
             display: inline-block;
             width: 60px;
         }  
-
-        
+        /* Grid styling */
+        .earnings-grid {
+            display: grid;
+            grid-template-columns: 50px 70px 180px 180px;
+            gap: 4px;
+            text-align: left;
+        }
+        .grid-header {
+            font-weight: bold;
+            text-align: center;
+        }
+        .grid-row-total {
+            grid-column: 1 / span 3;
+            text-align: left;
+            font-weight: bold;
+        }
+        .grid-item-input {
+            width: 90%;
+            text-align: center;
+        }
     </style>
 
     <script>
@@ -152,7 +170,7 @@
 
     <section class="body">
         <h3>Weekly Earnings</h3>
-        <p>Type in the quantity sold for each item to calculate earnings</p>     
+        <p>Enter quantity sold for each item to calculate weekly earnings</p>     
         <form id="myform" name="myform">
             <label for="item1Qty">Item 1:</label>
             <input type="number" name="item1Qty" id="item1Qty" autofocus><br>
@@ -168,46 +186,33 @@
 
         <div id="error"></div>
 
-        <table>
-            <tr>
-                <td style="font-weight: bold; text-align: center;"><label for="itemNumber">Item#</label></td>
-                <td style="font-weight: bold; text-align: center;"><label for="price">Price</label></td>
-                <td style="font-weight: bold; text-align: center;"><label for="qty">Qty Sold</label></td>
-                <td style="font-weight: bold; text-align: center;"><label for="total">Total $</label></td>
-            </tr>
-            <tr>
-                <td><label for="itemId">1</label></td>
-                <td><label for="itemPrice">$20.99</label></td>
-                <td><input readonly id="item1QtyDisplay"></td>
-                <td><input readonly id="item1Total"></td>
-            </tr>
-            <tr>
-                <td><label for="itemId">2</label></td>
-                <td><label for="itemPrice">$12.75</label></td>
-                <td><input readonly id="item2QtyDisplay"></td>
-                <td><input readonly id="item2Total"></td>
-            </tr>
-            <tr>
-                <td><label for="itemId">3</label></td>
-                <td><label for="itemPrice">$9.95</label></td>
-                <td><input readonly id="item3QtyDisplay"></td>
-                <td><input readonly id="item3Total"></td>
-            </tr>
-            <tr>
-                <td><label for="itemId">4</label></td>
-                <td><label for="itemPrice">$35.89</label></td>
-                <td><input readonly id="item4QtyDisplay"></td>
-                <td><input readonly id="item4Total"></td>
-            </tr>
-            <tr>
-                <td colspan="3"><label for="totalAmountSold">Total Amount Sold</label></td>
-                <td><input readonly id="totalAmountSold"></td>
-            </tr>
-            <tr>
-                <td colspan="3"><label for="totalWeeklyEarnings">Total Weekly Earnings</label></td>
-                <td><input readonly id="totalWeeklyEarnings"></td>
-            </tr>            
-        </table>
+        <div class="earnings-grid">
+            <div class="grid-header">Item#</div>
+            <div class="grid-header">Price</div>
+            <div class="grid-header">Qty Sold</div>
+            <div class="grid-header">Total $</div>
+            <div>1</div>
+            <div>$20.99</div>
+            <div><input readonly id="item1QtyDisplay" class="grid-item-input"></div>
+            <div><input readonly id="item1Total" class="grid-item-input"></div>
+            <div>2</div>
+            <div>$12.75</div>
+            <div><input readonly id="item2QtyDisplay" class="grid-item-input"></div>
+            <div><input readonly id="item2Total" class="grid-item-input"></div>
+            <div>3</div>
+            <div>$9.95</div>
+            <div><input readonly id="item3QtyDisplay" class="grid-item-input"></div>
+            <div><input readonly id="item3Total" class="grid-item-input"></div>
+            <div>4</div>
+            <div>$35.89</div>
+            <div><input readonly id="item4QtyDisplay" class="grid-item-input"></div>
+            <div><input readonly id="item4Total" class="grid-item-input"></div>
+            <div class="grid-row-total">Total Amount Sold</div>
+            <div><input readonly id="totalAmountSold" class="grid-item-input"></div>
+            <div class="grid-row-total">Total Weekly Earnings</div>
+            <div><input readonly id="totalWeeklyEarnings" class="grid-item-input"></div>
+        </div>
+
     </section>
 
     <nav class="previous-next">
