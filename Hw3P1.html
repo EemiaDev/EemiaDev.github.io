@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="description" content="JavaScript/Ajax Programming Homework 3: Functions">
-<title>Create a Webpage That Calculates Student Grades</title>
+<title>Create a Webpage That Calculates Weekly Earnings</title>
     <style>
         header {
             background-color: #cce1ff;
@@ -73,123 +73,146 @@
         nav.previous-next {
             display: flex;
             margin: 50px;
-            justify-content: right;
+            justify-content: space-between;
             margin-top: 100px;
         }
         /*section styling*/
         .body { max-width: 500px; margin: 0px auto; padding-top: 20px;
         }        
         /*form styling*/
-        .form-row {
+        #myform label {
             padding: 2px 0;
-        }
-        .form-row label {
             display: inline-block;
-            width: 250px;
-        }
+            width: 60px;
+        }  
+
+        
     </style>
 
     <script>
         function process() {
             //declare variables
-            var hwAvg, midExam, finalExam, participation, finalAvg, finalGrade;
-            var errMsg="<span style='color: red; font-size: 18px;'>Invalid number. Please enter scores between 0 and 100 in all fields.</span>";
+            const item1Price = 20.99;
+            const item2Price = 12.75;
+            const item3Price = 9.95;
+            const item4Price = 35.89;
             //get input values from form
-            hwAvg = document.getElementById("hwAvg").value;
-            midExam = document.getElementById("midExam").value;
-            finalExam = document.getElementById("finalExam").value;
-            participation = document.getElementById("participation").value;
-            //validate input - if not then alert error msg...else proceed
-            if (isNaN(hwAvg) || hwAvg=="" || hwAvg < 0 || hwAvg > 100 ||
-                isNaN(midExam) || midExam=="" || midExam < 0 || midExam > 100 ||
-                isNaN(finalExam) || finalExam=="" || finalExam < 0 || finalExam > 100 ||
-                isNaN(participation) || participation=="" || participation < 0 || participation > 100) {
-                document.getElementById("error").innerHTML= errMsg;
-                document.getElementById("results").innerHTML = "";
-                } 
-            else {
-                //convert input to numeric values
-                hwAvgP = parseFloat(hwAvg);
-                midExamP = parseFloat(midExam);
-                finalExamP = parseFloat(finalExam);
-                participationP = parseFloat(participation);
-                //calculate final average: final average = (.5 * hwAvg) + (.2 * midExam) + (.2 * finalExam) + (.1 * participation)
-                finalAvg = (.5 * hwAvgP) + (.2 * midExamP) + (.2 * finalExamP) + (.1 * participationP);
-                document.getElementById("error").innerHTML= "";
-                //switch statement
-                switch (true) {
-                case (finalAvg >= 90):
-                    document.getElementById("results").innerHTML = ("The final average is " + Math.round(finalAvg) + 
-                    "<br> The final letter grade is A")
-                    break;
-                case (finalAvg >= 80):
-                    document.getElementById("results").innerHTML = ("The final average is " + Math.round(finalAvg) + 
-                    "<br> The final letter grade is B")
-                    break;
-                case (finalAvg >= 70):
-                    document.getElementById("results").innerHTML = ("The final average is " + Math.round(finalAvg) + 
-                    "<br> The final letter grade is C")
-                    break;
-                case (finalAvg >= 60):
-                    document.getElementById("results").innerHTML = ("The final average is " + Math.round(finalAvg) + 
-                    "<br> The final letter grade is D, student must retake the course")
-                    break;                                        
-                default:
-                    document.getElementById("results").innerHTML = ("The final average is " + Math.round(finalAvg) + 
-                    "<br> The final letter grade is F, student must retake the course")
-                }                
-            }
+            const item1Qty = document.getElementById("item1Qty").value;
+            const item2Qty = document.getElementById("item2Qty").value;
+            const item3Qty = document.getElementById("item3Qty").value;
+            const item4Qty = document.getElementById("item4Qty").value;
+            //validate input
+            if (isNaN(item1Qty) || item1Qty=="" || item1Qty < 0 || 
+                isNaN(item2Qty) || item2Qty=="" || item2Qty < 0 || 
+                isNaN(item3Qty) || item3Qty=="" || item3Qty < 0 || 
+                isNaN(item4Qty) || item4Qty=="" || item4Qty < 0) {
+                document.getElementById("error").innerHTML= "<span style='color: red; font-size: 18px;'>Invalid input. Please enter a positive whole number for all items.</span>"; return}
+            //clear error message
+            document.getElementById("error").innerHTML = "";
+            //display qty sold
+            document.getElementById("item1QtyDisplay").value = item1Qty;
+            document.getElementById("item2QtyDisplay").value = item2Qty;
+            document.getElementById("item3QtyDisplay").value = item3Qty;
+            document.getElementById("item4QtyDisplay").value = item4Qty;
+            //create numeric variables for each item total
+            const item1Total = item1Qty * item1Price;
+            const item2Total = item2Qty * item2Price;
+            const item3Total = item3Qty * item3Price;
+            const item4Total = item4Qty * item4Price;
+            //display item total
+            document.getElementById("item1Total").value = "$" + item1Total.toFixed(2);
+            document.getElementById("item2Total").value = "$" + item2Total.toFixed(2);
+            document.getElementById("item3Total").value = "$" + item3Total.toFixed(2);
+            document.getElementById("item4Total").value = "$" + item4Total.toFixed(2);
+            //create numeric variable for total amount sold
+            const totalAmountSold = item1Total + item2Total + item3Total + item4Total; 
+            //display total amount sold
+            document.getElementById("totalAmountSold").value = "$" + totalAmountSold.toFixed(2);
+            //create numeric variable for total amount sold
+            const totalWeeklyEarnings = 250 + (totalAmountSold * 0.09); 
+            //display total earnings 
+            document.getElementById("totalWeeklyEarnings").value = "$" + totalWeeklyEarnings.toFixed(2);
         }
         function res() {
             document.getElementById("error").innerHTML = "";
-            document.getElementById("results").innerHTML = "";
         }       
     </script>
 </head>
 
 <body>
     <header>
-      <h1>Part 1: Create a Webpage That Calculates Student Grades</h1>
+      <h1>Part 2: Create a Webpage That Calculates Weekly Earnings</h1>
     </header>
 
     <ul class="breadcrumb">
       <li><a href="Hw1.html">Home</a></li>
       <li><a href="Hw3.html">Homework 3 - Functions</a></li>
-      <li>Part 1</li>
+      <li>Part 2</li>
     </ul>
 
     <section class="body">
-        <h3>Student Grades</h3>
-        <p>Use this tool to calcutate your final average and letter grade</p>     
+        <h3>Weekly Earnings</h3>
+        <p>Type in the quantity sold for each item to calculate earnings</p>     
         <form id="myform" name="myform">
-        <div class="form-row">
-            <label for="hwAvg">Homework Average:</label>
-            <input type="number" name="hwAvg" id="hwAvg">
-        </div>
-        <div class="form-row">
-            <label for="midExam">Mid-Term Exam Score:</label>
-            <input type="number" name="midExam" id="midExam">
-        </div>
-        <div class="form-row">
-            <label for="finalExam">Final Exam Score:</label>
-            <input type="number" name="finalExam" id="finalExam">
-        </div>
-        <div class="form-row">
-            <label for="participation">Participation:</label>
-            <input type="number" name="participation" id="participation">
-        </div>
-        <div class="form-row">
-            <input type="button" value="SUBMIT" onclick="process()">
-            <input type="reset" value="RESET" onclick="res()">
-        </div>
-        <div id="error"></div>
-        <div id="results"></div>
+            <label for="item1Qty">Item 1:</label>
+            <input type="number" name="item1Qty" id="item1Qty" autofocus><br>
+            <label for="item2Qty">Item 2:</label>
+            <input type="number" name="item2Qty" id="item2Qty"><br>
+            <label for="item3Qty">Item 3:</label>
+            <input type="number" name="item3Qty" id="item3Qty"><br>
+            <label for="item4Qty">Item 4:</label>
+            <input type="number" name="item4Qty" id="item4Qty"><br>
+            <input type="button" value="SUBMIT"  onclick="process()"> <br>
+            <input type="reset" value="CLEAR FORM" onclick="res()"> <br>   
         </form>
+
+        <div id="error"></div>
+
+        <table>
+            <tr>
+                <td style="font-weight: bold; text-align: center;"><label for="itemNumber">Item#</label></td>
+                <td style="font-weight: bold; text-align: center;"><label for="price">Price</label></td>
+                <td style="font-weight: bold; text-align: center;"><label for="qty">Qty Sold</label></td>
+                <td style="font-weight: bold; text-align: center;"><label for="total">Total $</label></td>
+            </tr>
+            <tr>
+                <td><label for="itemId">1</label></td>
+                <td><label for="itemPrice">$20.99</label></td>
+                <td><input readonly id="item1QtyDisplay"></td>
+                <td><input readonly id="item1Total"></td>
+            </tr>
+            <tr>
+                <td><label for="itemId">2</label></td>
+                <td><label for="itemPrice">$12.75</label></td>
+                <td><input readonly id="item2QtyDisplay"></td>
+                <td><input readonly id="item2Total"></td>
+            </tr>
+            <tr>
+                <td><label for="itemId">3</label></td>
+                <td><label for="itemPrice">$9.95</label></td>
+                <td><input readonly id="item3QtyDisplay"></td>
+                <td><input readonly id="item3Total"></td>
+            </tr>
+            <tr>
+                <td><label for="itemId">4</label></td>
+                <td><label for="itemPrice">$35.89</label></td>
+                <td><input readonly id="item4QtyDisplay"></td>
+                <td><input readonly id="item4Total"></td>
+            </tr>
+            <tr>
+                <td colspan="3"><label for="totalAmountSold">Total Amount Sold</label></td>
+                <td><input readonly id="totalAmountSold"></td>
+            </tr>
+            <tr>
+                <td colspan="3"><label for="totalWeeklyEarnings">Total Weekly Earnings</label></td>
+                <td><input readonly id="totalWeeklyEarnings"></td>
+            </tr>            
+        </table>
     </section>
 
     <nav class="previous-next">
-      <a href="Hw3P2.html" class="next">Next: Part 2</a>
+      <a href="Hw3P1.html" class="previous">Previous: Part 1</a>
+      <a href="Hw3P3EC.html" class="next">Next: Extra Credit</a>
     </nav>
 </body>
 </html>
-
