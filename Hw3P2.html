@@ -80,13 +80,13 @@
         .body { max-width: 500px; margin: 0px auto; padding-top: 20px;
         }        
         /*form styling*/
-        .form-row {
+        #myform label {
             padding: 2px 0;
-        }
-        .form-row label {
             display: inline-block;
             width: 60px;
         }  
+
+        
     </style>
 
     <script>
@@ -154,29 +154,20 @@
         <h3>Weekly Earnings</h3>
         <p>Type in the quantity sold for each item to calculate earnings</p>     
         <form id="myform" name="myform">
-        <div class="form-row">
             <label for="item1Qty">Item 1:</label>
-            <input type="number" name="item1Qty" id="item1Qty">
-        </div>
-        <div class="form-row">
+            <input type="number" name="item1Qty" id="item1Qty" autofocus><br>
             <label for="item2Qty">Item 2:</label>
-            <input type="number" name="item2Qty" id="item2Qty">
-        </div>
-        <div class="form-row">
+            <input type="number" name="item2Qty" id="item2Qty"><br>
             <label for="item3Qty">Item 3:</label>
-            <input type="number" name="item3Qty" id="item3Qty">
-        </div>
-        <div class="form-row">
+            <input type="number" name="item3Qty" id="item3Qty"><br>
             <label for="item4Qty">Item 4:</label>
-            <input type="number" name="item4Qty" id="item4Qty">
-        </div>
-        <div>
+            <input type="number" name="item4Qty" id="item4Qty"><br>
             <input type="button" value="SUBMIT"  onclick="process()"> <br>
-            <input type="reset" value="CLEAR FORM" onclick="res()"> <br>    
-        </div>
+            <input type="reset" value="CLEAR FORM" onclick="res()"> <br>   
+        </form>
 
         <div id="error"></div>
-        
+
         <table>
             <tr>
                 <td style="font-weight: bold; text-align: center;"><label for="itemNumber">Item#</label></td>
@@ -217,7 +208,6 @@
                 <td><input readonly id="totalWeeklyEarnings"></td>
             </tr>            
         </table>
-        </form>
     </section>
 
     <nav class="previous-next">
