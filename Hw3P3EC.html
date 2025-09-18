@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="description" content="JavaScript/Ajax Programming Homework 3: Functions">
+<title>Create a Web Page for an Educational Game</title>
+    <style>
+        header {
+            background-color: #cce1ff;
+            border-radius: 50px;
+        }
+        h1 {
+            color: black;
+            padding: 20px;
+            text-align: center;
+        }
+        h3 {
+            color: black;
+            text-align: center;
+        }
+        p {
+            text-align: center;
+        }
+        body {
+            max-width: 1200px;
+            margin: 0 auto;
+            font-size: 18px;
+            line-height: 1.5;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+        /* Breadcrumb styling*/
+        ul.breadcrumb {
+            list-style: none;
+        }
+        ul.breadcrumb li {
+            display: inline;
+            font-size: 16px;
+        }
+        ul.breadcrumb li+li:before {
+            padding: 8px;
+            color: black;
+            content: "/\00a0";
+        }
+        /* Homework links styling*/
+        .homework-links {
+            max-width: 500px;
+            margin: 0 auto;       
+            text-align: left;     
+        }
+        .homework-links li {
+            list-style: none;
+            margin: 16px 0;
+        }
+        /*Previou/Next button styling*/
+        nav.previous-next a {
+            text-decoration: none;
+            display: inline-block;
+            padding: 8px 16px;
+        }
+        nav.previous-next a:hover {
+            background-color: #ddd;
+            color: black;
+        }
+        nav.previous-next .previous { 
+            font-style: normal;
+            background-color: #f1f1f1;
+            border-radius: 6px;
+            color: black;
+        }
+        nav.previous-next .next {
+            font-style: normal;
+            background-color: #f1f1f1;
+            border-radius: 6px;
+            color: black;
+        }
+        nav.previous-next {
+            display: flex;
+            margin: 50px;
+            justify-content: space-between;
+            margin-top: 100px;
+        }
+        /*section styling*/
+        .body { max-width: fit-content; margin: 0px auto; padding-top: 20px;
+        }        
+        /*form styling*/
+        form input {
+            margin-right: 4px; 
+            margin-left: 4px;
+            align-self: center;
+        }     
+
+    </style>
+
+    <script>
+        //generate & display 2 random numbers between 0-9 on load
+        window.onload = generateNumbers;
+        function generateNumbers() {
+            const num1 = Math.floor(Math.random() * 10);
+            const num2 = Math.floor(Math.random() * 10);
+            document.getElementById("randomNumber1").value = num1;
+            document.getElementById("randomNumber2").value = num2;
+        }
+        function checkAnswer() {
+            //get numeric values from inputs
+            const num1 = parseInt(document.getElementById("randomNumber1").value);
+            const num2 = parseInt(document.getElementById("randomNumber2").value);
+            const userAnswer = parseInt(document.getElementById("answer").value);
+            //validate entry
+            if (isNaN(userAnswer)) {
+                document.getElementById("feedback").innerHTML = "<span style='color: red; font-size: 18px;'>Please enter a valid number</span>";
+                return; 
+            }
+            //define the correct answer
+            const correctAnswer = num1 * num2;
+            if (userAnswer === correctAnswer) {
+                document.getElementById("feedback").innerHTML= `
+                <span style="color: green; font-size: 18px;">Very good! Would you like to play again?</span><br>
+                <button onclick="location.reload()">YES</button>
+                <button onclick="document.getElementById('feedback').innerHTML='<span style=color:black; font-size:18px;>Thanks for playing, see you next time!</span>'">NO</button>`;
+                } 
+            else {
+                document.getElementById("feedback").innerHTML= "<span style='color: red; font-size: 18px;'>No. Please try again.</span>"; 
+            }    
+        }    
+    </script>
+</head>
+
+<body>
+    <header>
+      <h1>Extra Credit: Create a Web Page for an Educational Game</h1>
+    </header>
+
+    <ul class="breadcrumb">
+      <li><a href="Hw1.html">Home</a></li>
+      <li><a href="Hw3.html">Homework 3 - Functions</a></li>
+      <li>Extra Credit</li>
+    </ul>
+
+    <section class="body">
+        <h3>Multiplication Quiz</h3>
+        <p>Let's test your multiplication skills! How much is:</p>  
+        <form name="multiplicationG">
+            <input id="randomNumber1" name="randomNumber1" type="text" size="1" readonly>
+            <b>x</b> 
+            <input id="randomNumber2" name="randomNumber2" type="text" size="1" readonly>
+            <b>=</b> 
+            <input id="answer" name="answer" type="number" size="1" autofocus style="width: 40px;">
+
+            <input  type="button" value="Check Answer" onclick="checkAnswer();">
+        </form>
+        <div id="feedback"></div>
+    </section>
+
+    <nav class="previous-next">
+      <a href="Hw3P2.html" class="previous">Previous: Part 2</a>
+    </nav>
+</body>
+</html>
