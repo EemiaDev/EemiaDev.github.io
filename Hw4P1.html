@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="description" content="JavaScript/Ajax Programming Homework 3: Functions">
+<title>Create a Webpage That Calculates Student Grades</title>
+    <style>
+        header {
+            background-color: #cce1ff;
+            border-radius: 50px;
+        }
+        h1 {
+            color: black;
+            padding: 20px;
+            text-align: center;
+        }
+        h3 {
+            color: black;
+            text-align: center;
+        }
+        body {
+            max-width: 1200px;
+            margin: 0 auto;
+            font-size: 18px;
+            line-height: 1.5;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+        /* Breadcrumb styling*/
+        ul.breadcrumb {
+            list-style: none;
+        }
+        ul.breadcrumb li {
+            display: inline;
+            font-size: 16px;
+        }
+        ul.breadcrumb li+li:before {
+            padding: 8px;
+            color: black;
+            content: "/\00a0";
+        }
+        /* Homework links styling*/
+        .homework-links {
+            max-width: 500px;
+            margin: 0 auto;       
+            text-align: left;     
+        }
+        .homework-links li {
+            list-style: none;
+            margin: 16px 0;
+        }
+        /*Previou/Next button styling*/
+        nav.previous-next a {
+            text-decoration: none;
+            display: inline-block;
+            padding: 8px 16px;
+        }
+        nav.previous-next a:hover {
+            background-color: #ddd;
+            color: black;
+        }
+        nav.previous-next .previous { 
+            font-style: normal;
+            background-color: #f1f1f1;
+            border-radius: 6px;
+            color: black;
+        }
+        nav.previous-next .next {
+            font-style: normal;
+            background-color: #f1f1f1;
+            border-radius: 6px;
+            color: black;
+        }
+        nav.previous-next {
+            display: flex;
+            margin: 50px;
+            justify-content: right;
+            margin-top: 100px;
+        }
+        /*section styling*/
+        .body { max-width: fit-content; margin: 0px auto; padding-top: 20px;
+        } 
+               
+
+    </style>
+</head>
+
+<body>
+    <header>
+      <h1>Part 1: Calculating Product and Sum with Loop Statements</h1>
+    </header>
+
+    <ul class="breadcrumb">
+      <li><a href="Hw1.html">Home</a></li>
+      <li><a href="Hw4.html">Homework 4 - Looping Statements</a></li>
+      <li>Part 1</li>
+    </ul>
+
+    <section class="body">
+        <h4>Calculation with for statement</h4>
+        <script>
+            var sum, product;
+            sum = 0;
+            product = 1;
+            for (var i = 5; i <= 25; i += 4) {
+                sum += i;
+                product *= i;
+            }
+            product = product.toLocaleString();
+            sum = sum.toLocaleString();
+            document.write( "The sum of every fourth integer from 5 to 25 inclusive is " + sum + "<br>"); 
+            document.write( "The product of every fourth integer from 5 to 25 inclusive is " + product ); 
+        </script>
+        <h4>Calculation with while statement</h4>
+        <script>
+            var sum, product, x;
+            sum = 0;
+            product = 1;
+            x = 3;
+            while (x <= 18 ) {
+                sum += x;
+                product *= x;
+                x = x + 3;
+            }
+            product = product.toLocaleString();
+            sum = sum.toLocaleString();
+            document.write( "The sum of every third integer from 3 to 18 inclusive is " + sum + "<br>"); 
+            document.write( "The product of every third integer from 3 to 18 inclusive is " + product );             
+        </script>
+
+    </section>
+
+    <nav class="previous-next">
+      <a href="Hw4P2.html" class="next">Next: Part 2</a>
+    </nav>
+</body>
+</html>
