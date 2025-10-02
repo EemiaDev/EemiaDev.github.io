@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="description" content="JavaScript/Ajax Programming Homework 4: Looping Statements">
+<title>Teaching Kids Multiplication Tables</title>
+    <style>
+        header {
+            background-color: #cce1ff;
+            border-radius: 50px;
+        }
+        h1 {
+            color: black;
+            padding: 20px;
+            text-align: center;
+        }
+        h3 {
+            color: black;
+            text-align: center;
+        }
+        body {
+            max-width: 1200px;
+            margin: 0 auto;
+            font-size: 18px;
+            line-height: 1.5;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+        /* Breadcrumb styling*/
+        ul.breadcrumb {
+            list-style: none;
+        }
+        ul.breadcrumb li {
+            display: inline;
+            font-size: 16px;
+        }
+        ul.breadcrumb li+li:before {
+            padding: 8px;
+            color: black;
+            content: "/\00a0";
+        }
+        /* Homework links styling*/
+        .homework-links {
+            max-width: 500px;
+            margin: 0 auto;       
+            text-align: left;     
+        }
+        .homework-links li {
+            list-style: none;
+            margin: 16px 0;
+        }
+        /*Previou/Next button styling*/
+        nav.previous-next a {
+            text-decoration: none;
+            display: inline-block;
+            padding: 8px 16px;
+        }
+        nav.previous-next a:hover {
+            background-color: #ddd;
+            color: black;
+        }
+        nav.previous-next .previous { 
+            font-style: normal;
+            background-color: #f1f1f1;
+            border-radius: 6px;
+            color: black;
+        }
+        nav.previous-next .next {
+            font-style: normal;
+            background-color: #f1f1f1;
+            border-radius: 6px;
+            color: black;
+        }
+        nav.previous-next {
+            display: flex;
+            margin: 50px;
+            justify-content: space-between;
+            margin-top: 100px;
+        }
+        /*section styling*/
+        .body { max-width:fit-content; margin: 0px auto; padding-top: 20px;
+        }        
+        /* table styling */
+        table {
+            border-collapse: collapse;
+            margin-bottom: 20px; 
+        }    
+        th, td {            
+            border: 1px solid #ddd;
+            padding: 2px 50px 2px 8px;
+        }            
+        tr:nth-child(even){background-color: #f2f2f2;}
+        th {
+            text-align: left;
+            background-color: brown;
+            color: white;
+        }  
+    </style>
+</head>
+
+<body>
+    <header>
+      <h1>Part 2: Teaching Kids Multiplication Tables</h1>
+    </header>
+
+    <ul class="breadcrumb">
+      <li><a href="Hw1.html">Home</a></li>
+      <li><a href="Hw4.html">Homework 4 - Looping Statements</a></li>
+      <li>Part 2</li>
+    </ul>
+
+    <section class="body">
+        <h3>Learn multiplication</h3>
+        <div id="tables"></div>
+    </section>
+
+    <nav class="previous-next">
+      <a href="Hw4P1.html" class="previous">Previous: Part 1</a>
+      <a href="Hw4P3EC.html" class="next">Next: Extra Credit</a>
+    </nav>
+
+    <script>
+        var tableElement = "";
+        // do...while outer loop
+        var multiplier = 5;
+        do {
+            tableElement += "<table>";
+            tableElement += "<tr><th>Number</th><th>Multiplier</th><th>Result</th></tr>";
+            // inner for loop starts   
+            var result;         
+            for (var number =1; number <= 9; number++) {
+                result = number * multiplier
+                tableElement += "<tr>" + "<td>" + number + "</td>" + "<td>" + multiplier + "</td>" + "<td>" + result + "</td>"+"</tr>";                
+            }  
+            // inner for loop ends
+            tableElement += "</table>";     
+            multiplier++;
+        } while (multiplier <= 9);
+        document.getElementById("tables").innerHTML = tableElement;
+    </script>
+    <table>
+        
+    </table>
+</body>
+</html>
