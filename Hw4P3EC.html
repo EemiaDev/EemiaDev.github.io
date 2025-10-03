@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="description" content="JavaScript/Ajax Programming Homework 4: Looping Statements">
+<title>Creating a Square with Asterisks</title>
+    <style>
+        header {
+            background-color: #cce1ff;
+            border-radius: 50px;
+        }
+        h1 {
+            color: black;
+            padding: 20px;
+            text-align: center;
+        }
+        h3 {
+            color: black;
+            text-align: center;
+        }
+        body {
+            max-width: 1200px;
+            margin: 0 auto;
+            font-size: 18px;
+            line-height: 1.5;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+        /* Breadcrumb styling*/
+        ul.breadcrumb {
+            list-style: none;
+        }
+        ul.breadcrumb li {
+            display: inline;
+            font-size: 16px;
+        }
+        ul.breadcrumb li+li:before {
+            padding: 8px;
+            color: black;
+            content: "/\00a0";
+        }
+        /* Homework links styling*/
+        .homework-links {
+            max-width: 500px;
+            margin: 0 auto;       
+            text-align: left;     
+        }
+        .homework-links li {
+            list-style: none;
+            margin: 16px 0;
+        }
+        /*Previou/Next button styling*/
+        nav.previous-next a {
+            text-decoration: none;
+            display: inline-block;
+            padding: 8px 16px;
+        }
+        nav.previous-next a:hover {
+            background-color: #ddd;
+            color: black;
+        }
+        nav.previous-next .previous { 
+            font-style: normal;
+            background-color: #f1f1f1;
+            border-radius: 6px;
+            color: black;
+        }
+        nav.previous-next .next {
+            font-style: normal;
+            background-color: #f1f1f1;
+            border-radius: 6px;
+            color: black;
+        }
+        nav.previous-next {
+            display: flex;
+            margin: 50px;
+            justify-content: space-between;
+            margin-top: 100px;
+        }
+        /*section styling*/
+        .body { max-width:fit-content; margin: 0px auto; padding-top: 20px;
+        }        
+        /* form styling */
+        input {
+            width: 80px;
+        }
+
+    </style>
+</head>
+
+<body>
+    <header>
+      <h1>Part 2: Creating a Square with Asterisks</h1>
+    </header>
+
+    <ul class="breadcrumb">
+      <li><a href="Hw1.html">Home</a></li>
+      <li><a href="Hw4.html">Homework 4 - Looping Statements</a></li>
+      <li>Part 3</li>
+    </ul>
+
+    <section class="body">
+        <h3>Square Builder</h3>
+        <form id="myform" name="myform">
+            <label for="input">Enter a square size between 2 and 10:</label>
+            <input type="number" name="input" id="input" autofocus>
+            <input type="button" value="SUBMIT" onclick="process()">
+            <input type="reset" value="RESET" onclick="res()"> <br>   
+        </form>
+        <div id="error"></div>
+        <div id="square"></div>
+    </section>
+
+    <nav class="previous-next">
+      <a href="Hw4P2.html" class="previous">Previous: Part 2</a>
+    </nav>
+
+    <script>
+    function process() {
+        //get input value from form
+        var size = parseInt (document.getElementById("input").value);
+        //validate input value
+        if (isNaN(size) || size == "" || size < 2 || size > 10) {
+            document.getElementById("error").innerHTML= "<span style='color: red; font-size: 18px;'>Invalid input. Please enter an integer between 2 and 10.</span>"; 
+            document.getElementById("square").innerHTML = "";
+        }
+        // create the square
+        else {
+            var squareElement = ""
+            for (var row = 1; row <= size; row++) { 
+                squareElement += "*  "; 
+                for ( var col = 1; col <= size - 1; col++) {
+                    if (row === 1 || row === size || col === size - 1) {
+                        squareElement += "*  ";
+                    }
+                    else {
+                        squareElement += "   ";
+                    }
+                }                      
+                squareElement += "\n";
+            }
+            document.getElementById("square").innerHTML = "<pre>" + squareElement + "</pre>";
+            document.getElementById("error").innerHTML = "";
+        }
+    }
+    function res() {
+        document.getElementById("error").innerHTML = "";
+        document.getElementById("square").innerHTML = "";
+    }          
+    </script>
+
+</body>
+</html>
