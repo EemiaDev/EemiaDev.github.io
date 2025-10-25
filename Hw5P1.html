@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="description" content="JavaScript/Ajax Programming Homework 5: Arrays">
+<title>Webpage for Form Validation</title>
+    <style>
+        header {
+            background-color: #cce1ff;
+            border-radius: 50px;
+        }
+        h1 {
+            color: black;
+            padding: 20px;
+            text-align: center;
+        }
+        h3 {
+            color: black;
+            text-align: left;
+        }
+        body {
+            max-width: 1200px;
+            margin: 0 auto;
+            font-size: 18px;
+            line-height: 1.5;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+        /* Breadcrumb styling*/
+        ul.breadcrumb {
+            list-style: none;
+        }
+        ul.breadcrumb li {
+            display: inline;
+            font-size: 16px;
+        }
+        ul.breadcrumb li+li:before {
+            padding: 8px;
+            color: black;
+            content: "/\00a0";
+        }
+        /* Homework links styling*/
+        .homework-links {
+            max-width: 500px;
+            margin: 0 auto;       
+            text-align: left;     
+        }
+        .homework-links li {
+            list-style: none;
+            margin: 16px 0;
+        }
+        /*Previou/Next button styling*/
+        nav.previous-next a {
+            text-decoration: none;
+            display: inline-block;
+            padding: 8px 16px;
+        }
+        nav.previous-next a:hover {
+            background-color: #ddd;
+            color: black;
+        }
+        nav.previous-next .previous { 
+            font-style: normal;
+            background-color: #f1f1f1;
+            border-radius: 6px;
+            color: black;
+        }
+        nav.previous-next .next {
+            font-style: normal;
+            background-color: #f1f1f1;
+            border-radius: 6px;
+            color: black;
+        }
+        nav.previous-next {
+            display: flex;
+            margin: 50px;
+            justify-content: right;
+            margin-top: 100px;
+        }
+        /*section styling*/
+        .body { max-width: fit-content; margin: 0px auto; padding-top: 20px;
+        }
+        /*other styling*/
+        .error-message { color: red;}
+        .success-message { color: green;}
+    </style>
+</head>
+
+<body>
+    <header>
+      <h1>Part 1: Form Validation</h1>
+    </header>
+
+    <ul class="breadcrumb">
+      <li><a href="Hw1.html">Home</a></li>
+      <li><a href="Hw5.html">Homework 5 - Arrays</a></li>
+      <li>Part 1</li>
+    </ul>
+
+    <section class="body">
+        <form id="myform" name="myform">
+            <!-- name -->
+            <label for="fullName" style="font-weight: bold;">Full Name:</label>
+            <input type="text" id="fullName" name="fullName" placeholder=" " autofocus><br> 
+            <div id="nameError" class="error-message"></div><br>
+            <!-- radio buttons -->
+            <label for="ageGroup" style="font-weight: bold;">Age Group:</label>
+            <input type="radio" id="ageUnder21" name="ageGroup" value="<21">
+            <label for="ageUnder21" style="display: inline;">Less than 21</label>
+            <input type="radio" id="age21to50" name="ageGroup" value="21-50">
+            <label for="age21to50" style="display: inline;">Between 21 and 50</label>
+            <input type="radio" id="ageOver50" name="ageGroup" value=">50">
+            <label for="ageOver50" style="display: inline;">Older than 50</label><br>
+            <div id="ageError" class="error-message"></div><br>
+            <!-- checkboxes -->
+            <label for="browserUsed" style="font-weight: bold;">Browsers Used:</label>
+            <input type="checkbox" id="browserFirefox" name="browsers" value="Firefox">
+            <label for="browserFirefox" style="display: inline;">Firefox</label>
+            <input type="checkbox" id="browserEdge" name="browsers" value="Edge">
+            <label for="browserEdge" style="display: inline;">Edge</label>
+            <input type="checkbox" id="browserChrome" name="browsers" value="Chrome">
+            <label for="browserChrome" style="display: inline;">Chrome</label>
+            <input type="checkbox" id="browserSafari" name="browsers" value="Safari">
+            <label for="browserSafari" style="display: inline;">Safari</label><br>
+            <div id="browserError" class="error-message"></div><br>
+            <!-- drop-down list -->
+            <label for="favoriteMovie" style="font-weight: bold;">Favorite Movie Type:</label>
+            <select id="favoriteMovie" name="favoriteMovie">
+                <option value="">-- Choose one --</option>
+                <option value="Action">Action</option>
+                <option value="Comedy">Comedy</option>
+                <option value="Drama">Drama</option>
+                <option value="Documentary">Documentary</option>
+                <option value="Science Fiction">Science Fiction</option>
+            </select><br>
+            <div id="favoriteMovieError" class="error-message"></div><br>
+            <input type="button" value="Submit Data" onclick="validateForm()">
+            <input type="reset" value="Clear Form">
+        </form>
+        <div id="output" class="success-message"></div>
+    </section>
+
+    <nav class="previous-next">
+      <a href="Hw5P2.html" class="next">Next: Part 2</a>
+    </nav>
+
+    <script>
+        function validateForm() {
+            document.getElementById('output').innerHTML = "";
+            //validate name
+            var fullName = document.getElementById("fullName").value;        
+            if (fullName == "") {
+                document.getElementById("nameError").innerHTML = "Please enter your full name";}  
+            else {
+                document.getElementById("nameError").innerHTML = "";}   
+            //validate age    
+            var rateChecked = false;
+            for (var i=0; i<3; ++i) {
+                if (document.myform.ageGroup[i].checked) {
+                    rateChecked = true;
+                    break;
+                }
+            }
+            if (rateChecked == false) {
+                document.getElementById("ageError").innerHTML = "Please select an age group";}
+            else {
+                document.getElementById("ageError").innerHTML = "";}     
+            //validate browser     
+            var browserSelected = false;
+            for (var i = 0; i < 4; ++i) {
+                // 3. Check if the current checkbox in the loop is checked
+                if (document.myform.browsers[i].checked) {
+                    browserSelected = true;
+                    break; 
+                }
+            }
+            if (browserSelected == false) {
+                document.getElementById("browserError").innerHTML = "Please select at least one browser.";} 
+            else {
+                document.getElementById("browserError").innerHTML = "";}
+            //validate movie type     
+            var selstat = document.forms["myform"].elements["favoriteMovie"].selectedIndex;
+            var selectedValue = "";
+            if (selstat < 1) {
+                document.getElementById("favoriteMovieError").innerHTML = "Please select a movie type";}
+            else {
+                selectedValue = document.forms["myform"].elements["favoriteMovie"].value;  
+                document.getElementById("favoriteMovieError").innerHTML = "";}
+            //output
+            if (fullName != "" && rateChecked == true && browserSelected == true && selstat >= 1) {
+                document.getElementById('output').innerHTML = "<br>Thanks, your data was submitted!";} 
+            else {
+                document.getElementById('output').innerHTML = "" ;}
+            }
+    </script>
+</body>
+</html>

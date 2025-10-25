@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="description" content="JavaScript/Ajax Programming Homework 5: Arrays">
+<title>Webpage for State Census Data</title>
+    <style>
+        header {
+            background-color: #cce1ff;
+            border-radius: 50px;
+        }
+        h1 {
+            color: black;
+            padding: 20px;
+            text-align: center;
+        }
+        h3 {
+            color: black;
+            text-align: left;
+        }
+        body {
+            max-width: 1200px;
+            margin: 0 auto;
+            font-size: 18px;
+            line-height: 1.5;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+        /* Breadcrumb styling*/
+        ul.breadcrumb {
+            list-style: none;
+        }
+        ul.breadcrumb li {
+            display: inline;
+            font-size: 16px;
+        }
+        ul.breadcrumb li+li:before {
+            padding: 8px;
+            color: black;
+            content: "/\00a0";
+        }
+        /* Homework links styling*/
+        .homework-links {
+            max-width: 500px;
+            margin: 0 auto;       
+            text-align: left;     
+        }
+        .homework-links li {
+            list-style: none;
+            margin: 16px 0;
+        }
+        /*Previou/Next button styling*/
+        nav.previous-next a {
+            text-decoration: none;
+            display: inline-block;
+            padding: 8px 16px;
+        }
+        nav.previous-next a:hover {
+            background-color: #ddd;
+            color: black;
+        }
+        nav.previous-next .previous { 
+            font-style: normal;
+            background-color: #f1f1f1;
+            border-radius: 6px;
+            color: black;
+        }
+        nav.previous-next .next {
+            font-style: normal;
+            background-color: #f1f1f1;
+            border-radius: 6px;
+            color: black;
+        }
+        nav.previous-next {
+            display: flex;
+            margin: 50px;
+            justify-content: left;
+            margin-top: 100px;
+        }
+        /*section styling*/
+        .body { max-width: 400px; margin: 0px auto; padding-top: 20px;
+        }
+        /*other styling*/
+        .error-message { color: red;}
+        .success-message { color: green;}
+        
+    </style>
+</head>
+
+<body>
+    <header>
+      <h1>Part 2: State Census Data</h1>
+    </header>
+
+    <ul class="breadcrumb">
+      <li><a href="Hw1.html">Home</a></li>
+      <li><a href="Hw5.html">Homework 5 - Arrays</a></li>
+      <li>Part 2</li>
+    </ul>
+
+    <section class="body">
+        <form id="myform" name="myform">
+            <!-- input -->
+            <label for="stateInput" style="font-weight: bold;">Enter State:</label>
+            <input type="text" id="search" name="search" placeholder="e.g., CA, California" autofocus>
+            <input type="button" value="Submit" onclick="stateCensus()">
+            <input type="reset" value="Clear" onclick="location.reload();">
+            <br><br>
+            <h4>State Census:</h4>
+            <label for="abbr">State abbr = </label>
+            <input type="text" size="10" name="abbr" id="abbr" readonly><br>
+            <label for="name">State name = </label>
+            <input type="text" size="10" name="name" id="name" readonly><br>
+            <label for="capital">Capital = </label>
+            <input type="text" size="10" name="capital" id="capital" readonly><br>
+            <label for="population ">Population = </label>
+            <input type="text" size="10" name="population" id="population" readonly><br>
+        </form>
+        <div id="error" class="error-message"></div>
+
+    </section>
+
+    <nav class="previous-next">
+      <a href="Hw5P1.html" class="previous">Previous: Part 1</a>
+    </nav>
+
+    <script>
+        var stateArray = [
+            ["AL", "Alabama", "Montgomery", 5157699],
+            ["AK", "Alaska", "Juneau", 740133],
+            ["AZ", "Arizona", "Phoenix", 7582384],
+            ["AR", "Arkansas", "Little Rock", 3088354],
+            ["CA", "California", "Sacramento", 39431263],
+            ["CO", "Colorado", "Denver", 5957493]
+        ];
+        function stateCensus () {
+            document.getElementById("error").innerHTML = "";
+            var searchKey = document.forms["myform"].elements["search"].value;
+            if (searchKey.length === 0) {
+                 document.getElementById("error").innerHTML = "Error: Please enter a valid state name or abbreviation.";
+                 return;
+            }
+            searchKey = searchKey.toUpperCase(); 
+            var found = false;
+            for (var row = 0; row < stateArray.length; row++) {
+                if ((stateArray[row][0] == searchKey) || (stateArray[row][1].toUpperCase() == searchKey)) {
+                    document.forms["myform"].elements["abbr"].value = stateArray[row][0];
+                    document.forms["myform"].elements["name"].value = stateArray[row][1];
+                    document.forms["myform"].elements["capital"].value = stateArray[row][2];
+                    document.forms["myform"].elements["population"].value = stateArray[row][3];
+                    row = stateArray.length;   
+                    found = true;                    
+                }
+            }
+            if ( found == false ) {
+                document.getElementById("error").innerHTML = "Sorry, we do not have information about this state! We only have information about Alabama, Alaska, Arizona, Arkansas, California and Colorado";
+                
+            }
+        }
+
+
+    </script>
+</body>
+</html>
