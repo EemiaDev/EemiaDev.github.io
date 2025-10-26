@@ -148,7 +148,7 @@
             document.getElementById('output').innerHTML = "";
             //validate name
             var fullName = document.getElementById("fullName").value;        
-            if (fullName == "") {
+            if (fullName == "" || fullName == null) {
                 document.getElementById("nameError").innerHTML = "Please enter your full name";}  
             else {
                 document.getElementById("nameError").innerHTML = "";}   
@@ -194,3 +194,4 @@
     </script>
 </body>
 </html>
+
