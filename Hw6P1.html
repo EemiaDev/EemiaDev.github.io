@@ -102,11 +102,12 @@
         <form name="myForm">
             <label for="number">Enter a number with at least 4 decimal positions</label>: <br>
             <input type="number" id="number" step="any" inputmode="decimal" autofocus> 
-            <input type="button" value="Submit" onclick="roundNumber()"><br>
+            <input type="button" value="Submit" onclick="roundNumber()">
+            <input type="reset" value="Reset" onClick="res();"><br>
             <div id ="errOut"></div>
             <textarea name = "output" id="output" rows = "8" cols = "60" readonly>
             </textarea><br>   
-            <input type="reset" value="Reset" onClick="res();">
+
         </form>        
     </section>
 
@@ -160,3 +161,4 @@
     </script>
 </body>
 </html>
+
