@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="description" content="JavaScript/Ajax Programming Homework 6: Objects">
+<title>Webpage to Perform Mathematical Tasks</title>
+    <style>
+        header {
+            background-color: #cce1ff;
+            border-radius: 50px;
+        }
+        h1 {
+            color: black;
+            padding: 20px;
+            text-align: center;
+        }
+        h3 {
+            color: black;
+            text-align: left;
+        }
+        body {
+            max-width: 1200px;
+            margin: 0 auto;
+            font-size: 18px;
+            line-height: 1.5;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+        /* Breadcrumb styling*/
+        ul.breadcrumb {
+            list-style: none;
+        }
+        ul.breadcrumb li {
+            display: inline;
+            font-size: 16px;
+        }
+        ul.breadcrumb li+li:before {
+            padding: 8px;
+            color: black;
+            content: "/\00a0";
+        }
+        /* Homework links styling*/
+        .homework-links {
+            max-width: 500px;
+            margin: 0 auto;       
+            text-align: left;     
+        }
+        .homework-links li {
+            list-style: none;
+            margin: 16px 0;
+        }
+        /*Previou/Next button styling*/
+        nav.previous-next a {
+            text-decoration: none;
+            display: inline-block;
+            padding: 8px 16px;
+        }
+        nav.previous-next a:hover {
+            background-color: #ddd;
+            color: black;
+        }
+        nav.previous-next .previous { 
+            font-style: normal;
+            background-color: #f1f1f1;
+            border-radius: 6px;
+            color: black;
+        }
+        nav.previous-next .next {
+            font-style: normal;
+            background-color: #f1f1f1;
+            border-radius: 6px;
+            color: black;
+        }
+        nav.previous-next {
+            display: flex;
+            margin: 50px;
+            justify-content: right;
+            margin-top: 100px;
+        }
+        /*section styling*/
+        .body { max-width: fit-content; margin: 0px auto; padding-top: 20px;
+        }
+        /*other styling*/
+        #errOut {
+            color: red;
+        }
+
+    </style>
+</head>
+
+<body>
+    <header>
+      <h1>Part 1: Math Objects</h1>
+    </header>
+
+    <ul class="breadcrumb">
+      <li><a href="Hw1.html">Home</a></li>
+      <li><a href="Hw6.html">Homework 6 - Objects</a></li>
+      <li>Part 1</li>
+    </ul>
+
+    <section class="body">        
+        <form name="myForm">
+            <label for="number">Enter a number with at least 4 decimal positions</label>: <br>
+            <input type="number" id="number" step="any" inputmode="decimal" autofocus> 
+            <input type="button" value="Submit" onclick="roundNumber()"><br>
+            <div id ="errOut"></div>
+            <textarea name = "output" id="output" rows = "8" cols = "60" readonly>
+            </textarea><br>   
+            <input type="reset" value="Reset" onClick="res();">
+        </form>        
+    </section>
+
+    <nav class="previous-next">
+      <a href="Hw6P2.html" class="next">Next: Part 2</a>
+    </nav>
+
+    <script>
+        function roundNumber() {
+            // Input validation
+            var re = new RegExp("^[0-9]{1,11}\.[0-9]{4,}$");
+            var errMsg = "Invalid input! Type a number with at least 4 decimals";
+            if ((document.getElementById("number").value) == "" || (!(re.test(document.getElementById("number").value)))) {
+                document.getElementById("errOut").innerHTML = errMsg;
+                document.getElementById("output").value = "";
+            }
+            else {
+                var num = parseFloat(document.getElementById("number").value);  // Convert to number
+                // math tasks
+                document.myForm.output.value =                    
+                "The entered number is " + num +
+                "\nRounded to the nearest integer is " + roundToNearestInteger(num) +
+                "\nSquare root rounded to integer is " + sqrtRoundedInteger(num) +
+                "\nRounded to the nearest tenths position is " + roundToTenths(num) +
+                "\nRounded to the nearest hundredths position is " + roundToHundredths(num) +
+                "\nRounded to the nearest thousandths position is " + roundToThousandths(num);
+
+                document.getElementById("errOut").innerHTML = "";                
+            }
+        }
+
+        function roundToNearestInteger(number) {        
+            return Math.round(number);
+        }
+        function sqrtRoundedInteger(number) {
+            return Math.round(Math.sqrt(number));
+        }
+        function roundToTenths(number) {
+            return number.toFixed(1);
+        }
+        function roundToHundredths(number) {
+            return (Math.round(number * 100) / 100).toFixed(2);
+        }
+        function roundToThousandths(number) {
+            return (Math.round(number * 1000) / 1000).toFixed(3);
+        }
+        function res() {
+            document.getElementById("errOut").innerHTML = "";
+            document.getElementById("number").focus();
+        }
+    </script>
+</body>
+</html>
