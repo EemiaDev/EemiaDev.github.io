@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="description" content="JavaScript/Ajax Programming Homework 7: Object Model and Cookies">
+<title>Cookie Management</title>
+<link rel="icon" href="Images/CIS114.png">
+<link rel="stylesheet" href="styles.css">
+<script>
+
+    function setCookie(cname,cvalue) {
+        document.cookie = cname + "=" + encodeURIComponent(cvalue) + ";path=/";
+    }
+
+    function getCookie(cname) {
+        let name = cname + "=";
+        let decodedCookie = decodeURIComponent(document.cookie);
+        let ca = decodedCookie.split(';');
+        for(let i = 0; i < ca.length; i++) {
+            let c = ca[i].trim();
+            if (c.indexOf(name) == 0) {
+            return c.substring(name.length, c.length);
+            }
+        }
+        return "";
+    }
+
+    function checkCookie() {
+        let name = getCookie("name");
+        let username = getCookie("username");
+        let form = document.getElementById("myform");
+        let msg = document.getElementById("msg");
+
+        if (name != "" && username != "") {
+            form.style.display = "none";
+            msg.innerHTML = "Welcome back, " + name + "!";
+        } else {
+            form.style.display = "block";
+            msg.innerHTML = "";
+        }
+    }
+
+    function saveUser() {
+        let nameInput = document.getElementById("name").value;
+        let usernameInput = document.getElementById("username").value;
+
+        if (nameInput === "" || usernameInput === "") {
+            msg.innerHTML = "Please enter both name and username to proceed.";   
+            return false;
+        }
+
+        setCookie("name", nameInput);
+        setCookie("username", usernameInput);
+
+        checkCookie();
+    }
+    
+
+</script>
+
+<style>
+    label {
+        display: inline-block;
+        width: 100px;
+        margin-bottom: 8px;
+    }
+</style>
+
+</head>
+
+<body onload="checkCookie()">
+    <header>
+      <h1>Part 2: Cookie Management</h1>
+    </header>
+
+    <ul class="breadcrumb">
+      <li><a href="Hw1.html">Home</a></li>
+      <li><a href="Hw7.html">Homework 7 - Object Model and Cookies</a></li>
+      <li>Part 2</li>
+    </ul>
+
+    <section>
+        <h3>Cookies</h3>
+
+        <form id="myform" name="myform" onsubmit="return saveUser();">
+         
+            <div>
+                <label for="name">Name: </label>
+                <input type="text" id="name" name="name" title="Please enter your name" size="20" maxlength="30" autofocus><br>               
+
+                <label for="username">Username: </label>
+                <input type="text" id="username" name="username" title="Please enter your username" size="20" maxlength="30"><br>
+                
+                <input type="submit" value="Submit">
+
+            </div>  
+
+        </form>
+
+        <div><p id="msg"></p></div>
+
+    </section>
+
+    <nav class="previous-next align-left">
+      <a href="Hw7P1.html" class="previous">Previous: Part 1</a>
+    </nav>    
+
+</body>
+</html>

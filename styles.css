@@ -1,0 +1,104 @@
+/* --- Global Layout and Typography --- */
+
+body {
+    max-width: 1200px;
+    margin: 0 auto;
+    font-size: 18px;
+    line-height: 1.5;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+header {
+    background-color: #cce1ff;
+    border-radius: 50px;
+}
+
+h1, h3 {
+    color: black;
+    text-align: left; /* General H3 style */
+}
+
+h1 {
+    padding: 20px;
+    text-align: center;
+}
+
+/* --- Section/Container Styles --- */
+section { 
+    margin: 0 auto; 
+    padding-top: 20px;
+    width: fit-content;
+    max-width: 600px;
+}
+
+.error-message,
+#errOut {
+    color: red;
+}
+
+.success-message { 
+    color: green;
+}
+
+
+/* --- Breadcrumb Styling --- */
+
+ul.breadcrumb {
+    list-style: none;
+}
+
+ul.breadcrumb li {
+    display: inline;
+    font-size: 16px;
+}
+
+ul.breadcrumb li+li:before {
+    padding: 8px;
+    color: black;
+    content: "/\00a0";
+}
+
+/* --- Homework Links Styling --- */
+
+.homework-links {
+    max-width: 500px;
+    margin: 0 auto;       
+    text-align: left;     
+}
+
+.homework-links li {
+    list-style: none;
+    margin: 16px 0;
+}
+
+/* --- Universal Navigation Button Styling --- */
+
+nav.previous-next {
+    display: flex;
+    margin: 50px;
+    margin-top: 100px;
+}
+
+/* Align navigation to the right (for Part 1) */
+.align-right {
+    justify-content: right;
+}
+
+/* Align navigation to the left (for Part 2) */
+.align-left {
+    justify-content: left;
+}
+
+nav.previous-next a {
+    text-decoration: none;
+    display: inline-block;
+    padding: 8px 16px;
+    background-color: #f1f1f1;
+    border-radius: 6px;
+    color: black;
+    font-style: normal;
+}
+
+nav.previous-next a:hover {
+    background-color: #ddd;
+}

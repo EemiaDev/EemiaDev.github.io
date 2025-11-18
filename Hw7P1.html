@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="description" content="JavaScript/Ajax Programming Homework 7: Object Model and Cookies">
+<title>Dynamic Style Application</title>
+<link rel="icon" href="Images/CIS114.png">
+<link rel="stylesheet" href="styles.css">
+<script>
+    // Change background color using radio buttons
+    function changeBgColor(style) {
+        var main = document.getElementById("main");
+
+        if (style == 0) {
+            main.className = "purple";
+        }
+        else if (style == 1) {
+            main.className = "pink";
+        }
+    }
+    // Set Font Style(s) Using Checkboxes
+    function changeFontStyle(checkbox, className) {
+        document.getElementById("content").classList.toggle(className, checkbox.checked);
+    }
+    // Set Font Size Using Dropdown Options
+    function changeFontSize() {
+        var main = document.getElementById("main");
+        var newSize = fSize.value; 
+        if (newSize == "") {
+                    main.style.fontSize = ""; 
+        } else {
+            main.style.fontSize = newSize;
+        }
+    }
+</script>
+
+<style>
+    div {
+        background-color: #fcfcfc;
+        border: 1px solid #e0e0e0;
+        padding: 20px;
+        border-radius: 8px;
+        margin-bottom: 20px;
+    }
+
+    .purple {
+        background-color: lavender;
+    }
+
+    .pink {
+        background-color: #ffe1f3;
+    }
+
+    .underline { 
+        text-decoration: underline; 
+    }
+    
+    .bold { 
+        font-weight: bold; 
+    }
+    
+    .italic { 
+        font-style: italic; 
+    }
+
+</style>
+
+</head>
+
+<body>
+    <header>
+      <h1>Part 1: Dynamic Style Visualization</h1>
+    </header>
+
+    <ul class="breadcrumb">
+      <li><a href="Hw1.html">Home</a></li>
+      <li><a href="Hw7.html">Homework 7 - Object Model and Cookies</a></li>
+      <li>Part 1</li>
+    </ul>
+
+    <section>
+        <h3>Style Visualizer</h3>     
+        <div id="main">
+            <p id="content">Test different font sizes, background colors, and text styles instantly with this interactive visualizer.<br>
+            Use the radio buttons to choose the background color, the checkboxes to apply text styles, and the dropdown menu to select the font size.<br>
+            See your choices applied instantly to preview various style combinations.</p>
+        </div>
+
+        <form name="myForm">
+            <label style="font-weight: bold;">Background Color:</label>
+            <label><input type="radio" name="bgColor" onclick="changeBgColor(0)">Lavender</label>
+            <label><input type="radio" name="bgColor" onclick="changeBgColor(1)">Pink</label><br>
+
+            <label style="font-weight: bold;">Font Style:</label>
+            <label><input type="checkbox" name="fStyle" onclick="changeFontStyle(this, 'underline')">Underline</label>
+            <label><input type="checkbox" name="fStyle" onclick="changeFontStyle(this, 'bold')">Bold</label>
+            <label><input type="checkbox" name="fStyle" onclick="changeFontStyle(this, 'italic')">Italic</label><br>
+
+            <label style="font-weight: bold;">Font Size:</label>
+            <select id="fSize" name="fSize" onchange="changeFontSize()">
+                <option value="">-- Standard --</option>
+                <option value="90%">Small</option>
+                <option value="110%">Medium</option>
+                <option value="120%">Large</option>
+            </select><br>
+        </form>    
+
+    </section>
+
+    <nav class="previous-next align-right">
+      <a href="Hw7P2.html" class="next">Next: Part 2</a>
+    </nav>
+
+</body>
+</html>
